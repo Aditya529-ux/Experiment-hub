@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://experiment-hub1.onrender.com';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://experiment-hub1.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_BASE,

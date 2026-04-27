@@ -25,7 +25,9 @@ if (!fs.existsSync(uploadDir)) {
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001'],
+  origin: function (origin, callback) {
+    callback(null, true);
+  },
   credentials: true
 }));
 app.use(express.json({ limit: '50mb' }));
