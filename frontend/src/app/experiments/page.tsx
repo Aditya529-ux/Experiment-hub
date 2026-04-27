@@ -1,6 +1,5 @@
 'use client';
-export const dynamic = "force-dynamic";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Search, Filter, FlaskConical, Edit3, Trash2, Share2, X, Save, Sparkles, Eye } from 'lucide-react';
 import AppLayout from '@/components/AppLayout';
@@ -10,7 +9,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 const STATUS_OPTIONS = ['draft', 'in-progress', 'completed', 'failed'];
 const TAG_PRESETS = ['ai', 'web', 'ml', 'python', 'data-science', 'devops', 'mobile', 'database', 'algorithms', 'testing'];
 
-export default function ExperimentsPage() {
+function ExperimentsContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [experiments, setExperiments] = useState<any[]>([]);
@@ -214,5 +213,13 @@ export default function ExperimentsPage() {
         )}
       </AnimatePresence>
     </AppLayout>
+  );
+}
+
+export default function ExperimentsPage() {
+  return (
+    <Suspense fallback={<div style={{ padding: 40, textAlign: 'center', color: 'var(--text-muted)' }}>Loading experiments...</div>}>
+      <ExperimentsContent />
+    </Suspense>
   );
 }
