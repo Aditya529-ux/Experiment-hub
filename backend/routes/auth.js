@@ -117,9 +117,14 @@ router.get('/me', authenticate, async (req, res) => {
 // PUT /api/auth/profile
 router.put('/profile', authenticate, async (req, res) => {
   try {
-    const { name, bio, avatar, skills, githubUrl, preferences } = req.body;
+    const { name, email, bio, avatar, skills, githubUrl, preferences } = req.body;
     const updates = {};
     if (name) updates.name = name;
+    if (email) {
+      const existingUser = await User.findOne({ email: email.toLowerCase(), _id: { $ne: req.user.id } });
+      if (existingUser) return res.status(409).json({ error: 'Email already in use.' });
+      updates.email = email.toLowerCase();
+    }
     if (bio !== undefined) updates.bio = bio;
     if (avatar !== undefined) updates.avatar = avatar;
     if (skills) updates.skills = skills;

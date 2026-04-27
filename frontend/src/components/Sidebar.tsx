@@ -17,6 +17,7 @@ const navItems = [
   { path: '/analytics', label: 'Analytics', icon: BarChart3 },
   { path: '/search', label: 'Search', icon: Search },
   { path: '/ai-chat', label: 'AI Assistant', icon: Sparkles },
+  { path: '/settings', label: 'Settings', icon: Settings },
 ];
 
 export default function Sidebar() {
