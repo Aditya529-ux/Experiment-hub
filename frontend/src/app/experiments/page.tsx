@@ -1,4 +1,5 @@
 'use client';
+export const dynamic = "force-dynamic";
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Search, Filter, FlaskConical, Edit3, Trash2, Share2, X, Save, Sparkles, Eye } from 'lucide-react';
